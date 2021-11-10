@@ -1,11 +1,13 @@
-console.log('app is running');
+import express from 'express';
 
-const a = 20;
-let b = 10;
-b = 22;
+const app = express();
 
-const mult = (a: number, b: number) => {
-  return a * b;
-};
+const PORT = 3000;
 
-console.log(mult(a,b));
+app.get('/', (_, res) => {
+  res.send('its work');
+});
+
+app.listen(PORT, () => {
+  console.log(`App is running now, http://localhost:${PORT}`);
+});
