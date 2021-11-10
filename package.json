@@ -7,7 +7,7 @@
     "lint": "eslint . --ext .ts",
     "dev": "nodemon --exec \"npm run tsnode\"",
     "tsnode": "ts-node src/index.ts",
-    "build": "tsc"
+    "build": "tsc && npx babel src --extensions .ts"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/multeng/learn-epam-be#readme",
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
     "@types/node": "^16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
