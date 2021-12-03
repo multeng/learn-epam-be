@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
 import { userRouter } from './api/routes/index';
-import { PORT } from './common/config';
+import config from './common/config';
 import dbInit from './db/init';
 
 dbInit();
@@ -17,8 +17,8 @@ export const get = () => {
 export const start = () => {
   const app = get();
   try {
-    app.listen(PORT, () => {
-      console.log('\x1b[31m', `App is running now, http://localhost:${PORT}`, '\x1b[0m');
+    app.listen(config.PORT, () => {
+      console.log('\x1b[31m', `App is running now, http://localhost:${config.PORT}`, '\x1b[0m');
     });
   } catch (error: any) {
     console.log(`Error occurred: ${error.message}`);

@@ -1,56 +1,69 @@
-import { IUser } from '../../common/types/interfaces';
-import { query } from '../../common/types/types';
+import {IUser} from '../../common/types/interfaces';
+import {query} from '../../common/types/types';
 import User from '../models/User';
 
 export const create = async (payload: IUser): Promise<IUser> => {
-  const user = await User.create(payload);
-
-  return user;
+  try {
+    return await User.create(payload);
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
+  }
 };
 
-export const update = async (id: string, payload: Partial<IUser>): Promise<IUser> => {
-  const user = await User.findByPk(id);
-
-  if (!user) {
-    throw new Error('User not found');
+export const update = async (id: string, payload: Partial<IUser>): Promise<IUser | null> => {
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      return null;
+    }
+    return await user.update(payload);
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
   }
-
-  const updatedUser = await user.update(payload);
-  return updatedUser;
 };
 
-export const getById = async (id: string): Promise<IUser> => {
-  const user = await User.findByPk(id);
-
-  if (!user) {
-    throw new Error('User not found');
+export const getById = async (id: string): Promise<IUser | null> => {
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      return null;
+    }
+    return user;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
   }
-
-  return user;
 };
 
-export const deleteById = async (id: string): Promise<IUser> => {
-  const user = await User.findByPk(id);
-
-  if (!user) {
-    throw new Error('User not found');
+export const deleteById = async (id: string): Promise<IUser | null> => {
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      return null;
+    }
+    return await user.update({isDeleted: true});
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
   }
-
-  const deletedUser = await user.update({ isDeleted: true });
-
-  return deletedUser;
 };
 
 export const getAll = async (limit?: number): Promise<IUser[]> => {
-  const query: query = {
-    where: {
-      isDeleted: false,
-    },
-  };
+  try {
+    const query: query = {
+      where: {
+        isDeleted: false,
+      },
+    };
 
-  if (limit) {
-    query.limit = limit;
+    if (limit) {
+      query.limit = limit;
+    }
+    return User.findAll(query);
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
   }
-
-  return User.findAll(query);
 };

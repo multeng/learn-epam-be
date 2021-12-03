@@ -43,5 +43,4 @@ export const getAll = async (req: Request, res: Response) => {
   const { limit } = req.query;
   const users = await service.getAll(Number(limit));
   return res.status(StatusCodes.OK).json(users);
-  
 };
