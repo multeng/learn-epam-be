@@ -1,18 +1,20 @@
 import * as service from '../../db/services/GroupService';
 import { StatusCodes } from 'http-status-codes';
 import { Request, Response } from 'express';
+import { ValidatedRequest } from 'express-joi-validation';
+import { CreateGroupRequestSchema, UpdateGroupRequestSchema } from '../middlewares/groupValidator';
 
-export const create = async (req: Request, res: Response) => {
-  const group = service.create(req.body);
+export const create = async (req: ValidatedRequest<CreateGroupRequestSchema>, res: Response) => {
+  const group = await service.create(req.body);
   if (!group) {
     return res.status(StatusCodes.BAD_REQUEST).json({ error: 'Group already exists' });
   }
   return res.status(StatusCodes.CREATED).json(group);
 };
 
-export const update = async (req: Request, res: Response) => {
+export const update = async (req: ValidatedRequest<UpdateGroupRequestSchema>, res: Response) => {
   const { id } = req.params;
-  const group = service.update(id, req.body);
+  const group = await service.update(id, req.body);
   if (!group) {
     return res.status(StatusCodes.BAD_REQUEST).json({ error: 'Group not found' });
   }
@@ -21,7 +23,7 @@ export const update = async (req: Request, res: Response) => {
 
 export const getById = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const group = service.getById(id);
+  const group = await service.getById(id);
   if (!group) {
     return res.status(StatusCodes.BAD_REQUEST).json({ error: 'Group not found' });
   }
@@ -30,7 +32,7 @@ export const getById = async (req: Request, res: Response) => {
 
 export const deleteById = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const success = service.deleteById(id);
+  const success = await service.deleteById(id);
   if (!success) {
     return res.status(StatusCodes.BAD_REQUEST).json({ error: 'Group not found' });
   }
@@ -38,6 +40,6 @@ export const deleteById = async (req: Request, res: Response) => {
 };
 
 export const getAll = async (req: Request, res: Response) => {
-  const groups = service.getAll();
+  const groups = await service.getAll();
   return res.status(StatusCodes.OK).json(groups);
 };

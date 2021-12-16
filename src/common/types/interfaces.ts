@@ -12,7 +12,7 @@ export interface IUser {
 }
 
 export interface IGroup {
-  id: string;
+  id?: string;
   name: string;
   permissions: Permission[];
   createdAt?: Date;
