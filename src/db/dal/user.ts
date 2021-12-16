@@ -1,6 +1,6 @@
-import {IUser} from '../../common/types/interfaces';
-import {query} from '../../common/types/types';
-import User from '../models/User';
+import { IUser } from '../../common/types/interfaces';
+import { query } from '../../common/types/types';
+import { User } from '../models';
 
 export const create = async (payload: IUser): Promise<IUser> => {
   try {
@@ -43,7 +43,7 @@ export const deleteById = async (id: string): Promise<IUser | null> => {
     if (!user) {
       return null;
     }
-    return await user.update({isDeleted: true});
+    return await user.update({ isDeleted: true });
   } catch (error: any) {
     console.log(error);
     throw new Error(error);
