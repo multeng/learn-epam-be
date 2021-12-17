@@ -1,4 +1,5 @@
 import userRouter from './user';
 import groupRouter from './group';
+import userGroupRouter from './userGroup';
 
-export { userRouter, groupRouter };
+export { userRouter, groupRouter, userGroupRouter };

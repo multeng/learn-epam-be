@@ -19,3 +19,12 @@ export interface IGroup {
   updatedAt?: Date;
   deletedAt?: Date;
 }
+
+export interface IUserGroup {
+  id?: number,
+  groupId: string,
+  userId: string,
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
+}
