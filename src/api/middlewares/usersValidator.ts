@@ -10,7 +10,7 @@ export const userSchema = Joi.object({
   isDeleted: Joi.boolean().required(),
 });
 
-export interface CreateUserRequstSchema extends ValidatedRequestSchema {
+export interface CreateUserRequestSchema extends ValidatedRequestSchema {
   [ContainerTypes.Body]: {
     id?: string;
     login: string;
@@ -20,7 +20,7 @@ export interface CreateUserRequstSchema extends ValidatedRequestSchema {
   };
 }
 
-export interface UpdateUserRequstSchema extends ValidatedRequestSchema {
+export interface UpdateUserRequestSchema extends ValidatedRequestSchema {
   [ContainerTypes.Body]: {
     id: string;
     login: string;

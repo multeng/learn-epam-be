@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import { userRouter } from './api/routes/index';
+import { userRouter, groupRouter, userGroupRouter } from './api/routes/index';
 import config from './common/config';
 import dbInit from './db/init';
 
@@ -10,6 +10,8 @@ export const get = () => {
 
   app.use(express.json());
   app.use('/users', userRouter);
+  app.use('/groups', groupRouter);
+  app.use('/usergroups', userGroupRouter);
 
   return app;
 };

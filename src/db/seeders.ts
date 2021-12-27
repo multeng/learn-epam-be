@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { IUser } from '../common/types/interfaces';
+import { IUser, IGroup } from '../common/types/interfaces';
 
 export const users: IUser[] = [
   {
@@ -36,5 +36,23 @@ export const users: IUser[] = [
     password: 'asdF1234!',
     age: 92,
     isDeleted: false,
+  },
+];
+
+export const groups: IGroup[] = [
+  {
+    id: uuidv4(),
+    name: 'admins',
+    permissions: ['READ', 'WRITE', 'DELETE', 'SHARE', 'UPLOAD_FILES'],
+  },
+  {
+    id: uuidv4(),
+    name: 'users',
+    permissions: ['READ', 'WRITE', 'SHARE', 'UPLOAD_FILES'],
+  },
+  {
+    id: uuidv4(),
+    name: 'guests',
+    permissions: ['READ'],
   },
 ];
