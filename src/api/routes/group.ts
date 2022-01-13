@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { groupValidator, groupSchema } from '../middlewares/groupValidator';
-import * as GroupContnroller from '../controllers/group';
+import GroupContnroller from '../controllers/group';
 
 
 const groupRouter = Router();

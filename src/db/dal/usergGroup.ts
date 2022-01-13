@@ -3,19 +3,14 @@ import { UserGroup } from '../models';
 
 export const addUsersToGroup = async (groupId: string, usersList: string[]) => {
   const transaction = await sequelizeConnection.transaction();
-  try {
-    for (const userId of usersList) {
-      await UserGroup.create(
-        {
-          groupId,
-          userId,
-        },
-        { transaction }
-      );
-    }
-    await transaction.commit();
-  } catch (error: any) {
-    await transaction.rollback();
-    throw new Error(error);
+  for (const userId of usersList) {
+    await UserGroup.create(
+      {
+        groupId,
+        userId,
+      },
+      { transaction }
+    );
   }
+  await transaction.commit();
 };

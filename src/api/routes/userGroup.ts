@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { userGroupValidator, userGroupSchema } from '../middlewares/userGroupValidator';
-import * as UserGroupController from '../controllers/userGroup';
+import UserGroupController from '../controllers/userGroup';
 
 const userGroupRouter = Router();
 
