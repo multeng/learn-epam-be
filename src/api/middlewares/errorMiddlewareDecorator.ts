@@ -20,7 +20,7 @@ export function catchErrorDecorator(target: any, key: string, desc: PropertyDesc
   desc.value = function (req: Request, res: Response, next: NextFunction) {
     method.call(this, req, res, next).catch((error) => {
       logger.error(error);
-      next();
+      next(new Error('Bad request'));
     });
   };
 }
