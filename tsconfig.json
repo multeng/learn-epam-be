@@ -11,6 +11,7 @@
     "forceConsistentCasingInFileNames": true,
     "skipDefaultLibCheck": true,
     "resolveJsonModule": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
+    "experimentalDecorators": true
   }
 }
