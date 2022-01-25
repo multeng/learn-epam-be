@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { groupValidator, groupSchema } from '../middlewares/groupValidator';
 import GroupContnroller from '../controllers/group';
+import authMiddleware from '../middlewares/authMiddleware';
 
 
 const groupRouter = Router();
@@ -8,13 +9,13 @@ const groupRouter = Router();
 groupRouter
   .route('/')
   .get(GroupContnroller.getAll)
-  .post(groupValidator.body(groupSchema), GroupContnroller.create)
+  .post(authMiddleware, groupValidator.body(groupSchema), GroupContnroller.create)
 
 groupRouter
   .route('/:id')
   .get(GroupContnroller.getById)
-  .put(groupValidator.body(groupSchema), GroupContnroller.update)
-  .delete(GroupContnroller.deleteById)
+  .put(authMiddleware, groupValidator.body(groupSchema), GroupContnroller.update)
+  .delete(authMiddleware, GroupContnroller.deleteById)
 
 
 export default groupRouter;

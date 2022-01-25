@@ -18,9 +18,9 @@ const logger = createLogger({
 export function catchErrorDecorator(target: any, key: string, desc: PropertyDescriptor) {
   const method = desc.value;
   desc.value = function (req: Request, res: Response, next: NextFunction) {
-    method.call(this, req, res, next).catch((error) => {
+    method.call(this, req, res, next).catch((error: any) => {
       logger.error(error);
-      next(new Error('Bad request'));
+      next();
     });
   };
 }

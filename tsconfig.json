@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "target": "ES6",
     "module": "commonjs",
     "lib": ["ES6"],
@@ -11,7 +12,6 @@
     "forceConsistentCasingInFileNames": true,
     "skipDefaultLibCheck": true,
     "resolveJsonModule": true,
-    "noImplicitAny": false,
-    "experimentalDecorators": true
+    "noImplicitAny": true,
   }
 }
