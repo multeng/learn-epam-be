@@ -10,7 +10,8 @@ const config = {
   DB_NAME: process.env.DB_NAME ?? 'Users',
   DB_USERNAME: process.env.DB_USERNAME ?? 'multeng',
   DB_PASSWORD: process.env.DB_PASSWORD,
-  DB_PORT: process.env.DB_PORT ?? 5432
+  DB_PORT: process.env.DB_PORT ?? 5432,
+  SECRET_KEY: process.env.SECRET_KEY ?? 'Secret'
 };
 
 export default config

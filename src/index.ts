@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
-import { userRouter, groupRouter, userGroupRouter } from './api/routes/index';
+import cors from 'cors';
+import { userRouter, groupRouter, userGroupRouter, authRouter } from './api/routes/index';
 import config from './common/config';
 import dbInit from './db/init';
 
@@ -9,6 +10,8 @@ export const get = () => {
   const app: Application = express();
 
   app.use(express.json());
+  app.use(cors());
+  app.use('/login', authRouter);
   app.use('/users', userRouter);
   app.use('/groups', groupRouter);
   app.use('/usergroups', userGroupRouter);
