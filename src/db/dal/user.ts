@@ -32,9 +32,9 @@ export const deleteById = async (id: string): Promise<IUser | null> => {
 
 export const getAll = async (limit?: number): Promise<IUser[]> => {
   const query: query = {
-    where: {
-      isDeleted: false,
-    },
+    // where: {
+    //   isDeleted: false,
+    // },
   };
 
   if (limit) {

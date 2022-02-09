@@ -1,5 +1,5 @@
 export type query = {
-  where: {
+  where?: {
     isDeleted: boolean;
   };
   limit?: number;
